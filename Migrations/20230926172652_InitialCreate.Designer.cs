@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CursoCsharp.Migrations
 {
-    [DbContext(typeof(SistemaGEstionContext))]
+    [DbContext(typeof(SistemaGestionContext))]
     [Migration("20230926172652_InitialCreate")]
     partial class InitialCreate
     {

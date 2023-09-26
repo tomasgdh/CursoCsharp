@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CursoCsharp.Context
 {
-    public class SistemaGEstionContext : DbContext
+    public class SistemaGestionContext : DbContext
     {
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Producto> Productos { get; set; }

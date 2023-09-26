@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CursoCsharp
+namespace CursoCsharp.Models
 {
     public class Cliente
     {

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CursoCsharp.Migrations
 {
-    [DbContext(typeof(SistemaGEstionContext))]
+    [DbContext(typeof(SistemaGestionContext))]
     partial class SistemaGEstionContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
