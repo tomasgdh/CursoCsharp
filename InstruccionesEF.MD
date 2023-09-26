@@ -1,6 +1,6 @@
 # Instalacion EntityFramework
 
-desde el CLI -> (Toll-> CommandLine -> command prompt for developers)
+desde el CLI -> (Tools-> CommandLine -> command prompt for developers)
 sobre la carpeta del proyecto
 
 # Pasos para instalar
