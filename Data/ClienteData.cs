@@ -4,40 +4,40 @@ using System.Data;
 
 namespace CursoCsharp.Data
 {
-    public class ProductoData
+    public class ClienteData
     {
-        #region Productos
-        public static List<Producto> ListarProductos()
+        #region Clientes
+        public static List<Cliente> ListarClientes()
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                return dbContext.Productos.OrderBy(x => x.Id).ToList();
+                return dbContext.Clientes.OrderBy(x => x.Id).ToList();
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-        public static Producto ObtenerProducto(int id)
+        public static Cliente ObtenerCliente(int id)
         {
 
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                return dbContext.Productos.Where(x => x.Id == id).First();
+                return dbContext.Clientes.Where(x => x.Id == id).First();
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-        public static void CrearProducto(Producto producto)
+        public static void CrearCliente(Cliente cliente)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                dbContext.Productos.Add(producto);
+                dbContext.Clientes.Add(cliente);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -49,20 +49,18 @@ namespace CursoCsharp.Data
 
         }
 
-        public static void ModificarProducto(Producto producto)
+        public static void ModificarCliente(Cliente cliente)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                var productoAModificar = dbContext.Productos.Find(producto.Id);
+                var clienteAModificar = dbContext.Clientes.Find(cliente.Id);
 
-                if (productoAModificar != null)
+                if (clienteAModificar != null)
                 {
-                    productoAModificar.Descripcion = producto.Descripcion;
-                    productoAModificar.Costo = producto.Costo;
-                    productoAModificar.PrecioVenta = producto.PrecioVenta;
-                    productoAModificar.Stock = producto.Stock;
-                    productoAModificar.IdUsuario = producto.IdUsuario;
+                    clienteAModificar.NombreApellido = cliente.NombreApellido;
+                    clienteAModificar.Domicilio = cliente.Domicilio;
+                    clienteAModificar.Telefono = cliente.Telefono;
                     dbContext.SaveChanges();
                 }
 
@@ -74,16 +72,16 @@ namespace CursoCsharp.Data
             }
         }
 
-        public static void EliminarProducto(Producto producto)
+        public static void EliminarCliente(Cliente cliente)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                var productoAEliminar = dbContext.Productos.Find(producto.Id);
+                var clienteAEliminar = dbContext.Clientes.Find(cliente.Id);
 
-                if (productoAEliminar != null)
+                if (clienteAEliminar != null)
                 {
-                    dbContext.Productos.Remove(productoAEliminar);
+                    dbContext.Clientes.Remove(clienteAEliminar);
                     dbContext.SaveChanges();
                 }
 

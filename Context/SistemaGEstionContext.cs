@@ -12,8 +12,9 @@ namespace CursoCsharp.Context
     {
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Producto> Productos { get; set; }
-        //public DbSet<ProductoVendido> ProductosVendidos { get; set; }
+        public DbSet<ProductoVendido> ProductosVendidos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Venta> Ventas { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Database=SistemaGestionEF;Trusted_Connection=true;");
