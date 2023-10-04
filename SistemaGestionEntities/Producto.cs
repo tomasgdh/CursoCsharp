@@ -4,12 +4,12 @@
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }
-        public float Costo { get; set; }
-        public float PrecioVenta { get; set; }
+        public decimal Costo { get; set; }
+        public decimal PrecioVenta { get; set; }
         public int Stock { get; set; }
         public int IdUsuario { get; set; }
 
-        public Producto(int id, string descripcion, float costo, float precioVenta, int stock, int idUsuario)
+        public Producto(int id, string descripcion, decimal costo, decimal precioVenta, int stock, int idUsuario)
         {
             Id = id;
             Descripcion = descripcion;

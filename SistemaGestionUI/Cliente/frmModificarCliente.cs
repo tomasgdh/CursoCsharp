@@ -1,11 +1,10 @@
 ﻿using SistemaGestionBusiness;
-using SistemaGestionEntities;
 
-namespace SistemaGestionUI
+namespace SistemaGestionUI.Cliente
 {
     public partial class frmModificarCliente : Form
     {
-        private Cliente cliente;
+        private SistemaGestionEntities.Cliente cliente;
 
         public frmModificarCliente(int IDCliente)
         {

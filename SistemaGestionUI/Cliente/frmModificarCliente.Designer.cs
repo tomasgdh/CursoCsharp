@@ -1,6 +1,6 @@
-﻿namespace SistemaGestionUI
+﻿namespace SistemaGestionUI.Cliente
 {
-    partial class frmCrearCliente
+    partial class frmModificarCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -39,10 +39,10 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(159, 201);
+            this.btnGuardar.Location = new System.Drawing.Point(151, 199);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 13;
+            this.btnGuardar.TabIndex = 20;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -50,57 +50,57 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 133);
+            this.label3.Location = new System.Drawing.Point(34, 131);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 15);
-            this.label3.TabIndex = 12;
+            this.label3.TabIndex = 19;
             this.label3.Text = "Telefono";
             // 
             // lblDomicilio
             // 
             this.lblDomicilio.AutoSize = true;
-            this.lblDomicilio.Location = new System.Drawing.Point(42, 75);
+            this.lblDomicilio.Location = new System.Drawing.Point(34, 73);
             this.lblDomicilio.Name = "lblDomicilio";
             this.lblDomicilio.Size = new System.Drawing.Size(58, 15);
-            this.lblDomicilio.TabIndex = 11;
+            this.lblDomicilio.TabIndex = 18;
             this.lblDomicilio.Text = "Domicilio";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 22);
+            this.label1.Location = new System.Drawing.Point(34, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 15);
-            this.label1.TabIndex = 10;
+            this.label1.TabIndex = 17;
             this.label1.Text = "Nombre y Apellido";
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(42, 151);
+            this.txtTelefono.Location = new System.Drawing.Point(34, 149);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(299, 23);
-            this.txtTelefono.TabIndex = 9;
+            this.txtTelefono.TabIndex = 16;
             // 
             // txtDomicilio
             // 
-            this.txtDomicilio.Location = new System.Drawing.Point(42, 93);
+            this.txtDomicilio.Location = new System.Drawing.Point(34, 91);
             this.txtDomicilio.Name = "txtDomicilio";
             this.txtDomicilio.Size = new System.Drawing.Size(299, 23);
-            this.txtDomicilio.TabIndex = 8;
+            this.txtDomicilio.TabIndex = 15;
             // 
             // txtNombreApellido
             // 
-            this.txtNombreApellido.Location = new System.Drawing.Point(42, 40);
+            this.txtNombreApellido.Location = new System.Drawing.Point(34, 38);
             this.txtNombreApellido.Name = "txtNombreApellido";
             this.txtNombreApellido.Size = new System.Drawing.Size(299, 23);
-            this.txtNombreApellido.TabIndex = 7;
+            this.txtNombreApellido.TabIndex = 14;
             // 
-            // frmCrearCliente
+            // frmModificarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(386, 261);
+            this.ClientSize = new System.Drawing.Size(357, 242);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblDomicilio);
@@ -108,8 +108,9 @@
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.txtDomicilio);
             this.Controls.Add(this.txtNombreApellido);
-            this.Name = "frmCrearCliente";
-            this.Text = "Crear Cliente";
+            this.Name = "frmModificarCliente";
+            this.Text = "Modificar Cliente";
+            this.Load += new System.EventHandler(this.frmModificarCliente_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

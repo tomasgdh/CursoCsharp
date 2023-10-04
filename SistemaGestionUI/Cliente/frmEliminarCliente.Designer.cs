@@ -1,4 +1,4 @@
-﻿namespace SistemaGestionUI
+﻿namespace SistemaGestionUI.Cliente
 {
     partial class frmEliminarCliente
     {

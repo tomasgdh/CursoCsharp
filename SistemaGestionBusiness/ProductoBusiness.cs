@@ -1,63 +1,55 @@
 ﻿using SistemaGestionData;
 using SistemaGestionEntities;
 
-
 namespace SistemaGestionBusiness
 {
-    public static class ClienteBusiness
+    public class ProductoBusiness
     {
-        public static List<Cliente> ListarClientes()
+        #region Productos
+        public static List<Producto> ListarProductos()
         {
             try
             {
-                return ClienteData.ListarClientes();
+                return ProductoData.ListarProductos();
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-        public static Cliente ObtenerCliente(int id)
+        public static Producto ObtenerProducto(int id)
         {
 
             try
             {
-                return ClienteData.ObtenerCliente(id);
+                return ProductoData.ObtenerProducto(id);
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-        public static void CrearCliente(Cliente cliente)
+        public static void CrearProducto(Producto producto)
         {
             try
             {
-                ClienteData.CrearCliente(cliente);
+                ProductoData.CrearProducto(producto);
             }
             catch (Exception ex)
             {
+
                 throw;
             }
+
+
         }
 
-        public static void ModificarCliente(Cliente cliente)
+        public static void ModificarProducto(Producto producto)
         {
             try
             {
-                ClienteData.ModificarCliente(cliente);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+                ProductoData.ModificarProducto(producto);
 
-        public static void EliminarCliente(Cliente cliente)
-        {
-            try
-            {
-                ClienteData.EliminarCliente(cliente);
             }
             catch (Exception ex)
             {
@@ -65,5 +57,20 @@ namespace SistemaGestionBusiness
                 throw;
             }
         }
-    }   
+
+        public static void EliminarProducto(Producto producto)
+        {
+            try
+            {
+                ProductoData.EliminarProducto(producto);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+        #endregion
+    }
 }

@@ -1,63 +1,54 @@
 ﻿using SistemaGestionData;
 using SistemaGestionEntities;
 
-
 namespace SistemaGestionBusiness
 {
-    public static class ClienteBusiness
+    public class UsuarioBusiness
     {
-        public static List<Cliente> ListarClientes()
+        public static List<Usuario> ListarUsuarios()
         {
             try
             {
-                return ClienteData.ListarClientes();
+                return UsuarioData.ListarUsuarios();
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-        public static Cliente ObtenerCliente(int id)
+        public static Usuario ObtenerUsuario(int id)
         {
 
             try
             {
-                return ClienteData.ObtenerCliente(id);
+                return UsuarioData.ObtenerUsuario(id);
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-        public static void CrearCliente(Cliente cliente)
+        public static void CrearUsuario(Usuario usuario)
         {
             try
             {
-                ClienteData.CrearCliente(cliente);
+                UsuarioData.CrearUsuario(usuario);
             }
             catch (Exception ex)
             {
+
                 throw;
             }
+
+
         }
 
-        public static void ModificarCliente(Cliente cliente)
+        public static void ModificarUsuario(Usuario usuario)
         {
             try
             {
-                ClienteData.ModificarCliente(cliente);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+                UsuarioData.ModificarUsuario(usuario);
 
-        public static void EliminarCliente(Cliente cliente)
-        {
-            try
-            {
-                ClienteData.EliminarCliente(cliente);
             }
             catch (Exception ex)
             {
@@ -65,5 +56,18 @@ namespace SistemaGestionBusiness
                 throw;
             }
         }
-    }   
+
+        public static void EliminarUsuario(Usuario usuario)
+        {
+            try
+            {
+                UsuarioData.EliminarUsuario(usuario);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+    }
 }

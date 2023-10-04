@@ -1,12 +1,11 @@
 ﻿using SistemaGestionBusiness;
-using SistemaGestionEntities;
 
-namespace SistemaGestionUI
+namespace SistemaGestionUI.Cliente
 {
     public partial class frmEliminarCliente : Form
     {
-        private Cliente cliente;
-       
+        private SistemaGestionEntities.Cliente cliente;
+
         public frmEliminarCliente(int IDCliente)
         {
             InitializeComponent();

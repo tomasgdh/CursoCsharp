@@ -4,60 +4,50 @@ using SistemaGestionEntities;
 
 namespace SistemaGestionBusiness
 {
-    public static class ClienteBusiness
+    public class VentaBusiness
     {
-        public static List<Cliente> ListarClientes()
+        public static List<Venta> ListarVentas()
         {
             try
             {
-                return ClienteData.ListarClientes();
+                return  VentaData.ListarVentas();
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-        public static Cliente ObtenerCliente(int id)
+        public static Venta ObtenerVenta(int id)
         {
 
             try
             {
-                return ClienteData.ObtenerCliente(id);
+                return VentaData.ObtenerVenta(id);
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-        public static void CrearCliente(Cliente cliente)
+        public static void CrearVentas(Venta venta)
         {
             try
             {
-                ClienteData.CrearCliente(cliente);
+                VentaData.CrearVentas(venta);
             }
             catch (Exception ex)
             {
+
                 throw;
             }
-        }
 
-        public static void ModificarCliente(Cliente cliente)
+
+        }
+        public static void ModificarVentas(Venta venta)
         {
             try
             {
-                ClienteData.ModificarCliente(cliente);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        public static void EliminarCliente(Cliente cliente)
-        {
-            try
-            {
-                ClienteData.EliminarCliente(cliente);
+                VentaData.ModificarVentas(venta);
             }
             catch (Exception ex)
             {
@@ -65,5 +55,17 @@ namespace SistemaGestionBusiness
                 throw;
             }
         }
-    }   
+        public static void EliminarVentas(Venta venta)
+        {
+            try
+            {
+                VentaData.EliminarVentas(venta);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+    }
 }

@@ -1,8 +1,7 @@
 ﻿
 using SistemaGestionBusiness;
-using SistemaGestionEntities;
 
-namespace SistemaGestionUI
+namespace SistemaGestionUI.Cliente
 {
     public partial class frmCrearCliente : Form
     {
@@ -14,7 +13,7 @@ namespace SistemaGestionUI
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (validar()) {
-                var cliente = new Cliente
+                var cliente = new SistemaGestionEntities.Cliente
                 {
                     NombreApellido = txtNombreApellido.Text.Trim(),
                     Domicilio = txtDomicilio.Text.Trim(),

@@ -1,11 +1,11 @@
 ﻿
 using SistemaGestionBusiness;
 
-namespace SistemaGestionUI
+namespace SistemaGestionUI.Cliente
 {
-    public partial class frmClientes : Form
+    public partial class frmCliente : Form
     {
-        public frmClientes()
+        public frmCliente()
         {
             InitializeComponent();
         }

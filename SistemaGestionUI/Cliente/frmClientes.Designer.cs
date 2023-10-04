@@ -1,6 +1,6 @@
-﻿namespace SistemaGestionUI
+﻿namespace SistemaGestionUI.Cliente
 {
-    partial class frmClientes
+    partial class frmCliente
     {
         /// <summary>
         /// Required designer variable.
