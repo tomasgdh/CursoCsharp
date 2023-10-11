@@ -9,52 +9,67 @@ namespace SistemaGestionUI.Cliente
         public frmModificarCliente(int IDCliente)
         {
             InitializeComponent();
-
-            this.cliente = ClienteBusiness.ObtenerCliente(IDCliente);
-            txtDomicilio.Text = cliente.Domicilio;
-            txtNombreApellido.Text = cliente.NombreApellido;
-            txtTelefono.Text = cliente.Telefono;
+            CargarClienteAsync(IDCliente);
         }
 
-
-        private void frmModificarCliente_Load(object sender, EventArgs e)
+        private async void CargarClienteAsync(int IDCliente)
         {
-
+            try
+            {
+                this.cliente = await ClienteBusiness.ObtenerClienteAsync(IDCliente);
+                txtDomicilio.Text = cliente.Domicilio;
+                txtNombreApellido.Text = cliente.NombreApellido;
+                txtTelefono.Text = cliente.Telefono;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
         }
-        private void btnGuardar_Click(object sender, EventArgs e)
+
+        private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (validar())
+            if (Validar())
             {
                 this.cliente.NombreApellido = txtNombreApellido.Text.Trim();
                 this.cliente.Domicilio = txtDomicilio.Text.Trim();
                 this.cliente.Telefono = txtTelefono.Text.Trim();
-                ClienteBusiness.ModificarCliente(cliente);
-                MessageBox.Show("El cliente se Modifico Correctamente");
-                this.Close();
-            }
 
+                try
+                {
+                    await ClienteBusiness.ModificarClienteAsync(this.cliente);
+                    MessageBox.Show("El cliente se Modificó Correctamente");
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al modificar el cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
-        private bool validar()
+
+        private bool Validar()
         {
             bool resultado = true;
             string mensaje = string.Empty;
 
-            if (String.IsNullOrEmpty(txtNombreApellido.Text))
+            if (string.IsNullOrEmpty(txtNombreApellido.Text))
             {
                 resultado = false;
-                mensaje = "- El Nombre y Apellido no pueden estar vacios" + Environment.NewLine;
+                mensaje = "- El Nombre y Apellido no pueden estar vacíos" + Environment.NewLine;
             }
-            if (String.IsNullOrEmpty(txtDomicilio.Text))
+            if (string.IsNullOrEmpty(txtDomicilio.Text))
             {
                 resultado = false;
-                mensaje = "- El Domicilio no pueden estar vacio" + Environment.NewLine;
+                mensaje = "- El Domicilio no puede estar vacío" + Environment.NewLine;
             }
-            if (String.IsNullOrEmpty(txtTelefono.Text))
+            if (string.IsNullOrEmpty(txtTelefono.Text))
             {
                 resultado = false;
-                mensaje = "- El Telefono no pueden estar vacio" + Environment.NewLine;
+                mensaje = "- El Teléfono no puede estar vacío" + Environment.NewLine;
             }
-            if (!String.IsNullOrEmpty(mensaje))
+            if (!string.IsNullOrEmpty(mensaje))
                 MessageBox.Show("Error: " + Environment.NewLine + mensaje);
             return resultado;
         }

@@ -1,72 +1,70 @@
 ﻿using SistemaGestionData;
 using SistemaGestionEntities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SistemaGestionBusiness
 {
     public class UsuarioBusiness
     {
-        public static List<Usuario> ListarUsuarios()
+        public static async Task<List<Usuario>> ListarUsuariosAsync()
         {
             try
             {
-                return UsuarioData.ListarUsuarios();
+                return await UsuarioData.ListarUsuariosAsync();
             }
             catch (Exception ex)
             {
-                return null;
-            }
-        }
-        public static Usuario ObtenerUsuario(int id)
-        {
-
-            try
-            {
-                return UsuarioData.ObtenerUsuario(id);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-        public static void CrearUsuario(Usuario usuario)
-        {
-            try
-            {
-                UsuarioData.CrearUsuario(usuario);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-
-        }
-
-        public static void ModificarUsuario(Usuario usuario)
-        {
-            try
-            {
-                UsuarioData.ModificarUsuario(usuario);
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
+                throw ex;
             }
         }
 
-        public static void EliminarUsuario(Usuario usuario)
+        public static async Task<Usuario> ObtenerUsuarioAsync(int id)
         {
             try
             {
-                UsuarioData.EliminarUsuario(usuario);
+                return await UsuarioData.ObtenerUsuarioAsync(id);
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
 
-                throw;
+        public static async Task CrearUsuarioAsync(Usuario usuario)
+        {
+            try
+            {
+                await UsuarioData.CrearUsuarioAsync(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static async Task ModificarUsuarioAsync(Usuario usuario)
+        {
+            try
+            {
+                await UsuarioData.ModificarUsuarioAsync(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static async Task EliminarUsuarioAsync(int Id)
+        {
+            try
+            {
+                await UsuarioData.EliminarUsuarioAsync(Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

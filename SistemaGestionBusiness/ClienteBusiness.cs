@@ -1,69 +1,71 @@
 ﻿using SistemaGestionData;
 using SistemaGestionEntities;
-
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SistemaGestionBusiness
 {
     public static class ClienteBusiness
     {
-        public static List<Cliente> ListarClientes()
+        public static async Task<List<Cliente>> ListarClientesAsync()
         {
             try
             {
-                return ClienteData.ListarClientes();
+                return await ClienteData.ListarClientesAsync();
             }
             catch (Exception ex)
             {
-                return null;
-            }
-        }
-        public static Cliente ObtenerCliente(int id)
-        {
-
-            try
-            {
-                return ClienteData.ObtenerCliente(id);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-        public static void CrearCliente(Cliente cliente)
-        {
-            try
-            {
-                ClienteData.CrearCliente(cliente);
-            }
-            catch (Exception ex)
-            {
-                throw;
+                throw ex;
             }
         }
 
-        public static void ModificarCliente(Cliente cliente)
+        public static async Task<Cliente> ObtenerClienteAsync(int id)
         {
             try
             {
-                ClienteData.ModificarCliente(cliente);
+                return await ClienteData.ObtenerClienteAsync(id);
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
-        public static void EliminarCliente(Cliente cliente)
+        public static async Task CrearClienteAsync(Cliente cliente)
         {
             try
             {
-                ClienteData.EliminarCliente(cliente);
+                await ClienteData.CrearClienteAsync(cliente);
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
-    }   
+
+        public static async Task ModificarClienteAsync(Cliente cliente)
+        {
+            try
+            {
+                await ClienteData.ModificarClienteAsync(cliente);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static async Task EliminarClienteAsync(int Id)
+        {
+            try
+            {
+                await ClienteData.EliminarClienteAsync(Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    }
 }

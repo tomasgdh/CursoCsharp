@@ -38,7 +38,7 @@
             label5 = new Label();
             label3 = new Label();
             label2 = new Label();
-            btnModificar = new Button();
+            btnEliminar = new Button();
             ((System.ComponentModel.ISupportInitialize)numStock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numPrecio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCosto).BeginInit();
@@ -144,19 +144,19 @@
             label2.TabIndex = 27;
             label2.Text = "Descripción";
             // 
-            // btnModificar
+            // btnEliminar
             // 
-            btnModificar.BackColor = Color.White;
-            btnModificar.FlatStyle = FlatStyle.Popup;
-            btnModificar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnModificar.ForeColor = Color.Black;
-            btnModificar.Location = new Point(314, 381);
-            btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(134, 40);
-            btnModificar.TabIndex = 26;
-            btnModificar.Text = "GUARDAR";
-            btnModificar.UseVisualStyleBackColor = false;
-            btnModificar.Click += btnModificar_Click;
+            btnEliminar.BackColor = Color.White;
+            btnEliminar.FlatStyle = FlatStyle.Popup;
+            btnEliminar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEliminar.ForeColor = Color.Black;
+            btnEliminar.Location = new Point(314, 381);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(134, 40);
+            btnEliminar.TabIndex = 26;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // frmEliminarProducto
             // 
@@ -174,7 +174,7 @@
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(btnModificar);
+            Controls.Add(btnEliminar);
             Name = "frmEliminarProducto";
             Text = "Eliminar Producto";
             Load += frmEliminarProducto_Load;
@@ -197,6 +197,6 @@
         private Label label5;
         private Label label3;
         private Label label2;
-        private Button btnModificar;
+        private Button btnEliminar;
     }
 }

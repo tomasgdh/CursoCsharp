@@ -1,5 +1,7 @@
-﻿
-using SistemaGestionBusiness;
+﻿using SistemaGestionBusiness;
+using System;
+using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace SistemaGestionUI.Cliente
 {
@@ -10,39 +12,51 @@ namespace SistemaGestionUI.Cliente
             InitializeComponent();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (validar()) {
+            if (Validar())
+            {
                 var cliente = new SistemaGestionEntities.Cliente
                 {
                     NombreApellido = txtNombreApellido.Text.Trim(),
                     Domicilio = txtDomicilio.Text.Trim(),
                     Telefono = txtTelefono.Text.Trim()
                 };
-                ClienteBusiness.CrearCliente(cliente);
-                MessageBox.Show("El cliente se Guardo Correctamente");
-                this.Close();
+
+                try
+                {
+                    await Task.Run(() => ClienteBusiness.CrearClienteAsync(cliente));
+                    MessageBox.Show("El cliente se Guardó Correctamente");
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al guardar el cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
-        private bool validar() {
+
+        private bool Validar()
+        {
             bool resultado = true;
             string mensaje = string.Empty;
-            
-            if (String.IsNullOrEmpty(txtNombreApellido.Text)) { 
-                resultado = false;
-                mensaje = "- El Nombre y Apellido no pueden estar vacios" + Environment.NewLine;
-            }
-            if (String.IsNullOrEmpty(txtDomicilio.Text))
+
+            if (string.IsNullOrEmpty(txtNombreApellido.Text))
             {
                 resultado = false;
-                mensaje = "- El Domicilio no pueden estar vacio" + Environment.NewLine;
+                mensaje = "- El Nombre y Apellido no pueden estar vacíos" + Environment.NewLine;
             }
-            if (String.IsNullOrEmpty(txtTelefono.Text))
+            if (string.IsNullOrEmpty(txtDomicilio.Text))
             {
                 resultado = false;
-                mensaje = "- El Telefono no pueden estar vacio" + Environment.NewLine;
+                mensaje = "- El Domicilio no puede estar vacío" + Environment.NewLine;
             }
-            if(!String.IsNullOrEmpty(mensaje))
+            if (string.IsNullOrEmpty(txtTelefono.Text))
+            {
+                resultado = false;
+                mensaje = "- El Teléfono no puede estar vacío" + Environment.NewLine;
+            }
+            if (!string.IsNullOrEmpty(mensaje))
                 MessageBox.Show("Error: " + Environment.NewLine + mensaje);
             return resultado;
         }

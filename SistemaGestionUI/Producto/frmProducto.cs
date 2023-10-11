@@ -1,5 +1,9 @@
 using SistemaGestionBusiness;
 using SistemaGestionEntities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SistemaGestionUI.Producto
 {
@@ -10,30 +14,38 @@ namespace SistemaGestionUI.Producto
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
-            CargarProductos();
+            await CargarProductosAsync();
         }
 
-        private void CargarProductos()
+        private async Task CargarProductosAsync()
         {
-            List<SistemaGestionEntities.Producto> lista = ProductoBusiness.ListarProductos();
+            try
+            {
+                List<SistemaGestionEntities.Producto> lista = await ProductoBusiness.ListarProductosAsync();
 
-            dataGridView1.AutoGenerateColumns = true;
-            dataGridView1.DataSource = lista;
-            dataGridView1.Refresh();
+                dataGridView1.AutoGenerateColumns = true;
+                dataGridView1.DataSource = lista;
+                dataGridView1.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los productos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void btnCrear_Click(object sender, EventArgs e)
+        private async void btnCrear_Click(object sender, EventArgs e)
         {
             frmAltaProducto frmAltaProducto = new frmAltaProducto();
-            frmAltaProducto.FormClosed += FrmAltaProducto_FormClosed;
-            frmAltaProducto.ShowDialog();   
+            frmAltaProducto.FormClosed += frmAltaProducto_FormClosed;
+            frmAltaProducto.ShowDialog();
+            await CargarProductosAsync();
         }
 
-        private void FrmAltaProducto_FormClosed(object? sender, FormClosedEventArgs e)
+        private async void frmAltaProducto_FormClosed(object? sender, FormClosedEventArgs e)
         {
-            CargarProductos();
+            await CargarProductosAsync();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -45,16 +57,15 @@ namespace SistemaGestionUI.Producto
             if (this.dataGridView1.Columns[e.ColumnIndex].Name == "btnEditar")
             {
                 frmModificarProducto modificar = new frmModificarProducto(id);
-                modificar.FormClosed += FrmAltaProducto_FormClosed;
+                modificar.FormClosed += frmAltaProducto_FormClosed;
                 modificar.ShowDialog();
             }
             else if (this.dataGridView1.Columns[e.ColumnIndex].Name == "btnEliminar")
             {
                 frmEliminarProducto eliminar = new frmEliminarProducto(id);
-                eliminar.FormClosed += FrmAltaProducto_FormClosed;
+                eliminar.FormClosed += frmAltaProducto_FormClosed;
                 eliminar.ShowDialog();
             }
-
         }
     }
 }

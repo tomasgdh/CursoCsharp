@@ -1,95 +1,93 @@
-﻿using SistemaGestionData.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaGestionData.Context;
 using SistemaGestionEntities;
-using System.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SistemaGestionData
 {
     public class ClienteData
     {
         #region Clientes
-        public static List<Cliente> ListarClientes()
+        public static async Task<List<Cliente>> ListarClientesAsync()
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                return dbContext.Clientes.OrderBy(x => x.Id).ToList();
+                return await dbContext.Clientes.OrderBy(x => x.Id).ToListAsync();
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
-        public static Cliente ObtenerCliente(int id)
-        {
 
+        public static async Task<Cliente> ObtenerClienteAsync(int id)
+        {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                return dbContext.Clientes.Where(x => x.Id == id).First();
+                return await dbContext.Clientes.FindAsync(id);
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
-        public static void CrearCliente(Cliente cliente)
+
+        public static async Task CrearClienteAsync(Cliente cliente)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
                 dbContext.Clientes.Add(cliente);
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
-
-
         }
 
-        public static void ModificarCliente(Cliente cliente)
+        public static async Task ModificarClienteAsync(Cliente cliente)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                var clienteAModificar = dbContext.Clientes.Find(cliente.Id);
+                var clienteAModificar = await dbContext.Clientes.FindAsync(cliente.Id);
 
                 if (clienteAModificar != null)
                 {
                     clienteAModificar.NombreApellido = cliente.NombreApellido;
                     clienteAModificar.Domicilio = cliente.Domicilio;
                     clienteAModificar.Telefono = cliente.Telefono;
-                    dbContext.SaveChanges();
+                    await dbContext.SaveChangesAsync();
                 }
-
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
 
-        public static void EliminarCliente(Cliente cliente)
+        public static async Task EliminarClienteAsync(int Id)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                var clienteAEliminar = dbContext.Clientes.Find(cliente.Id);
+                var clienteAEliminar = await dbContext.Clientes.FindAsync(Id);
 
                 if (clienteAEliminar != null)
                 {
                     dbContext.Clientes.Remove(clienteAEliminar);
-                    dbContext.SaveChanges();
+                    await dbContext.SaveChangesAsync();
                 }
-
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
         #endregion

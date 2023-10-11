@@ -1,4 +1,5 @@
 ﻿using SistemaGestionBusiness;
+using SistemaGestionEntities;
 
 namespace SistemaGestionUI.Cliente
 {
@@ -9,19 +10,38 @@ namespace SistemaGestionUI.Cliente
         public frmEliminarCliente(int IDCliente)
         {
             InitializeComponent();
-
-            this.cliente = ClienteBusiness.ObtenerCliente(IDCliente);
-
-            txtDomicilio.Text = cliente.Domicilio;
-            txtNombreApellido.Text = cliente.NombreApellido;
-            txtTelefono.Text = cliente.Telefono;
+            CargarClienteAsync(IDCliente);
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private async void CargarClienteAsync(int IDCliente)
         {
-            ClienteBusiness.EliminarCliente(this.cliente);
-            MessageBox.Show("El cliente se Elimino Correctamente");
-            this.Close();
+            try
+            {
+                this.cliente = await ClienteBusiness.ObtenerClienteAsync(IDCliente);
+
+                txtDomicilio.Text = cliente.Domicilio;
+                txtNombreApellido.Text = cliente.NombreApellido;
+                txtTelefono.Text = cliente.Telefono;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+
+        private async void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                await ClienteBusiness.EliminarClienteAsync(this.cliente.Id);
+                MessageBox.Show("El cliente se Eliminó Correctamente");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

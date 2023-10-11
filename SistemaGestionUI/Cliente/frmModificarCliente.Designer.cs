@@ -110,7 +110,7 @@
             this.Controls.Add(this.txtNombreApellido);
             this.Name = "frmModificarCliente";
             this.Text = "Modificar Cliente";
-            this.Load += new System.EventHandler(this.frmModificarCliente_Load);
+            //this.Load += new System.EventHandler(this.frmModificarCliente_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,60 +1,62 @@
-﻿using SistemaGestionData.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaGestionData.Context;
 using SistemaGestionEntities;
-using System.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SistemaGestionData
 {
     public class UsuarioData
     {
         #region usuarios
-        public static List<Usuario> ListarUsuarios()
+        public static async Task<List<Usuario>> ListarUsuariosAsync()
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                return dbContext.Usuarios.OrderBy(x => x.Id).ToList();
+                return await dbContext.Usuarios.OrderBy(x => x.Id).ToListAsync();
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
-        public static Usuario ObtenerUsuario(int id)
-        {
 
+        public static async Task<Usuario> ObtenerUsuarioAsync(int id)
+        {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                return dbContext.Usuarios.Where(x => x.Id == id).First();
+                return await dbContext.Usuarios.FindAsync(id);
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
-        public static void CrearUsuario(Usuario usuario)
+
+        public static async Task CrearUsuarioAsync(Usuario usuario)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
                 dbContext.Usuarios.Add(usuario);
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
-
-
         }
 
-        public static void ModificarUsuario(Usuario usuario)
+        public static async Task ModificarUsuarioAsync(Usuario usuario)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                var usuarioAModificar = dbContext.Usuarios.Find(usuario.Id);
+                var usuarioAModificar = await dbContext.Usuarios.FindAsync(usuario.Id);
 
                 if (usuarioAModificar != null)
                 {
@@ -63,35 +65,31 @@ namespace SistemaGestionData
                     usuarioAModificar.NombreUsuario = usuario.NombreUsuario;
                     usuarioAModificar.Contraseña = usuario.Contraseña;
                     usuarioAModificar.Mail = usuario.Mail;
-                    dbContext.SaveChanges();
+                    await dbContext.SaveChangesAsync();
                 }
-
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
 
-        public static void EliminarUsuario(Usuario usuario)
+        public static async Task EliminarUsuarioAsync(int Id)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                var usuarioAEliminar = dbContext.Usuarios.Find(usuario.Id);
+                var usuarioAEliminar = await dbContext.Usuarios.FindAsync(Id);
 
                 if (usuarioAEliminar != null)
                 {
                     dbContext.Usuarios.Remove(usuarioAEliminar);
-                    dbContext.SaveChanges();
+                    await dbContext.SaveChangesAsync();
                 }
-
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
         #endregion

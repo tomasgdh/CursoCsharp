@@ -1,74 +1,71 @@
 ﻿using SistemaGestionData;
 using SistemaGestionEntities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SistemaGestionBusiness
 {
     public class ProductoBusiness
     {
         #region Productos
-        public static List<Producto> ListarProductos()
+        public static async Task<List<Producto>> ListarProductosAsync()
         {
             try
             {
-                return ProductoData.ListarProductos();
+                return await ProductoData.ListarProductosAsync();
             }
             catch (Exception ex)
             {
-                return null;
-            }
-        }
-        public static Producto ObtenerProducto(int id)
-        {
-
-            try
-            {
-                return ProductoData.ObtenerProducto(id);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-        public static void CrearProducto(Producto producto)
-        {
-            try
-            {
-                ProductoData.CrearProducto(producto);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-
-        }
-
-        public static void ModificarProducto(Producto producto)
-        {
-            try
-            {
-                ProductoData.ModificarProducto(producto);
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
+                throw ex;
             }
         }
 
-        public static void EliminarProducto(Producto producto)
+        public static async Task<Producto> ObtenerProductoAsync(int id)
         {
             try
             {
-                ProductoData.EliminarProducto(producto);
-
+                return await ProductoData.ObtenerProductoAsync(id);
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
 
-                throw;
+        public static async Task CrearProductoAsync(Producto producto)
+        {
+            try
+            {
+                await ProductoData.CrearProductoAsync(producto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static async Task ModificarProductoAsync(Producto producto)
+        {
+            try
+            {
+                await ProductoData.ModificarProductoAsync(producto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static async Task EliminarProductoAsync(int Id)
+        {
+            try
+            {
+                await ProductoData.EliminarProductoAsync(Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
         #endregion

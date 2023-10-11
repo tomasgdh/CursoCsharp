@@ -177,7 +177,7 @@
             Controls.Add(btnModificar);
             Name = "frmModificarProducto";
             Text = "Modificar Producto";
-            Load += frmMdificarProducto_Load;
+            Load += frmModificarProducto_Load;
             ((System.ComponentModel.ISupportInitialize)numStock).EndInit();
             ((System.ComponentModel.ISupportInitialize)numPrecio).EndInit();
             ((System.ComponentModel.ISupportInitialize)numCosto).EndInit();
