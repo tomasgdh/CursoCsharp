@@ -1,70 +1,70 @@
 ﻿using SistemaGestionEntities;
 using SistemaGestionData;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SistemaGestionBusiness
 {
     public class ProductoVendidoBusiness
     {
-        public static List<ProductoVendido> ListarProductosVendidos()
+        public static async Task<List<ProductoVendido>> ListarProductosVendidosAsync()
         {
             try
             {
-                return ProductoVendidoData.ListarProductosVendidos();
+                return await ProductoVendidoData.ListarProductosVendidosAsync();
             }
             catch (Exception ex)
             {
-                return null;
-            }
-        }
-        public static ProductoVendido ObtenerProductoVendido(int id)
-        {
-
-            try
-            {
-                return ProductoVendidoData.ObtenerProductoVendido(id);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-        public static void CrearProductoVendido(ProductoVendido productoVendido)
-        {
-            try
-            {
-                ProductoVendidoData.CrearProductoVendido(productoVendido);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
+                throw ex;
             }
         }
 
-        public static void ModificarProductoVendido(ProductoVendido productoVendido)
+        public static async Task<ProductoVendido> ObtenerProductoVendidoAsync(int id)
         {
             try
             {
-                ProductoVendidoData.ModificarProductoVendido(productoVendido);
+                return await ProductoVendidoData.ObtenerProductoVendidoAsync(id);
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
 
-        public static void EliminarProductoVendido(ProductoVendido productoVendido)
+        public static async Task CrearProductoVendidoAsync(ProductoVendido productoVendido)
         {
             try
             {
-                ProductoVendidoData.EliminarProductoVendido(productoVendido);
-
+                await ProductoVendidoData.CrearProductoVendidoAsync(productoVendido);
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
 
-                throw;
+        public static async Task ModificarProductoVendidoAsync(ProductoVendido productoVendido)
+        {
+            try
+            {
+                await ProductoVendidoData.ModificarProductoVendidoAsync(productoVendido);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static async Task EliminarProductoVendidoAsync(int Id)
+        {
+            try
+            {
+                await ProductoVendidoData.EliminarProductoVendidoAsync(Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

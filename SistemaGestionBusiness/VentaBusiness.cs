@@ -1,70 +1,73 @@
-﻿using SistemaGestionData;
-using SistemaGestionEntities;
-
+﻿using SistemaGestionEntities;
+using SistemaGestionData.Context;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
+using SistemaGestionData;
 
 namespace SistemaGestionBusiness
 {
     public class VentaBusiness
     {
-        public static List<Venta> ListarVentas()
+        public static async Task<List<Venta>> ListarVentasAsync()
         {
             try
             {
-                return  VentaData.ListarVentas();
+                return await VentaData.ListarVentasAsync();
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
-        public static Venta ObtenerVenta(int id)
-        {
 
+        public static async Task<Venta> ObtenerVentaAsync(int id)
+        {
             try
             {
-                return VentaData.ObtenerVenta(id);
+                return await VentaData.ObtenerVentaAsync(id);
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
-        public static void CrearVentas(Venta venta)
+
+        public static async Task CrearVentaAsync(Venta venta)
         {
             try
             {
-                VentaData.CrearVentas(venta);
+                await VentaData.CrearVentaAsync(venta);
             }
             catch (Exception ex)
             {
-
-                throw;
-            }
-
-
-        }
-        public static void ModificarVentas(Venta venta)
-        {
-            try
-            {
-                VentaData.ModificarVentas(venta);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
+                throw ex;
             }
         }
-        public static void EliminarVentas(Venta venta)
+
+        public static async Task ModificarVentaAsync(Venta venta)
         {
             try
             {
-                VentaData.EliminarVentas(venta);
+                await VentaData.ModificarVentaAsync(venta);
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
 
-                throw;
+        public static async Task EliminarVentaAsync(int Id)
+        {
+            try
+            {
+                await VentaData.EliminarVentaAsync(Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

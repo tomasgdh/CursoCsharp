@@ -1,95 +1,94 @@
-﻿using SistemaGestionData.Context;
-using SistemaGestionEntities;
+﻿using SistemaGestionEntities;
+using SistemaGestionData.Context;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaGestionData
 {
     public class ProductoVendidoData
     {
         #region ProductosVendidos
-        public static List<ProductoVendido> ListarProductosVendidos()
+        public static async Task<List<ProductoVendido>> ListarProductosVendidosAsync()
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                return dbContext.ProductosVendidos.OrderBy(x => x.Id).ToList();
+                return await dbContext.ProductosVendidos.OrderBy(x => x.Id).ToListAsync();
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
-        public static ProductoVendido ObtenerProductoVendido(int id)
-        {
 
+        public static async Task<ProductoVendido> ObtenerProductoVendidoAsync(int id)
+        {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                return dbContext.ProductosVendidos.Where(x => x.Id == id).First();
+                return await dbContext.ProductosVendidos.Where(x => x.Id == id).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
-        public static void CrearProductoVendido(ProductoVendido productoVendido)
+
+        public static async Task CrearProductoVendidoAsync(ProductoVendido productoVendido)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
                 dbContext.ProductosVendidos.Add(productoVendido);
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
-
-
         }
 
-        public static void ModificarProductoVendido(ProductoVendido productoVendido)
+        public static async Task ModificarProductoVendidoAsync(ProductoVendido productoVendido)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                var productoVendidoAModificar = dbContext.ProductosVendidos.Find(productoVendido.Id);
+                var productoVendidoAModificar = await dbContext.ProductosVendidos.FindAsync(productoVendido.Id);
 
                 if (productoVendidoAModificar != null)
                 {
                     productoVendidoAModificar.IdProducto = productoVendido.IdProducto;
                     productoVendidoAModificar.Stock = productoVendido.Stock;
                     productoVendidoAModificar.Idventa = productoVendido.Idventa;
-                    dbContext.SaveChanges();
+                    await dbContext.SaveChangesAsync();
                 }
-
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
 
-        public static void EliminarProductoVendido(ProductoVendido productoVendido)
+        public static async Task EliminarProductoVendidoAsync(int Id)
         {
             try
             {
                 using var dbContext = new SistemaGestionContext();
-                var productoVendidoAEliminar = dbContext.ProductosVendidos.Find(productoVendido.Id);
+                var productoVendidoAEliminar = await dbContext.ProductosVendidos.FindAsync(Id);
 
                 if (productoVendidoAEliminar != null)
                 {
                     dbContext.ProductosVendidos.Remove(productoVendidoAEliminar);
-                    dbContext.SaveChanges();
+                    await dbContext.SaveChangesAsync();
                 }
-
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
         #endregion
