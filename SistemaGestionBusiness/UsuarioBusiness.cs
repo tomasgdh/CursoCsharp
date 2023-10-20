@@ -32,6 +32,18 @@ namespace SistemaGestionBusiness
             }
         }
 
+        public static async Task<Usuario> ObtenerUsuarioByNombreAsync(string nombreUsuario)
+        {
+            try
+            {
+                return await UsuarioData.ObtenerUsuarioByNombreAsync(nombreUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static async Task CrearUsuarioAsync(Usuario usuario)
         {
             try

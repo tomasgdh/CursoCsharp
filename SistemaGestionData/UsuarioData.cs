@@ -37,6 +37,19 @@ namespace SistemaGestionData
             }
         }
 
+        public static async Task<Usuario> ObtenerUsuarioByNombreAsync(string nombreUsuario)
+        {
+            try
+            {
+                using var dbContext = new SistemaGestionContext();
+                return await dbContext.Usuarios.FirstOrDefaultAsync(u => u.NombreUsuario == nombreUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static async Task CrearUsuarioAsync(Usuario usuario)
         {
             try

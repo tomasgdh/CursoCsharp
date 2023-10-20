@@ -1,12 +1,16 @@
-﻿using SistemaGestionBusiness;
-using System;
+﻿using System;
+using System.Net.Http;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Net.Http.Json;
+using System.Configuration;
 
 namespace SistemaGestionUI.Cliente
 {
     public partial class frmCliente : Form
     {
+        private readonly string apiUrl = ConfigurationManager.AppSettings["ApiUrl"];
+
         public frmCliente()
         {
             InitializeComponent();
@@ -54,11 +58,23 @@ namespace SistemaGestionUI.Cliente
         {
             try
             {
-                var clientes = await Task.Run(() => ClienteBusiness.ListarClientesAsync());
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    HttpResponseMessage response = await httpClient.GetAsync(apiUrl+"/Cliente");
 
-                dgClientes.AutoGenerateColumns = true;
-                dgClientes.DataSource = clientes;
-                dgClientes.Refresh();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var clientes = await response.Content.ReadFromJsonAsync<List<SistemaGestionEntities.Cliente>>(); // Ajusta el tipo según tu modelo.
+
+                        dgClientes.AutoGenerateColumns = true;
+                        dgClientes.DataSource = clientes;
+                        dgClientes.Refresh();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al listar clientes: " + response.ReasonPhrase, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
             catch (Exception ex)
             {
