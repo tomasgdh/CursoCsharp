@@ -14,16 +14,13 @@ namespace SistemaGestionWebAPI.Controllers
         {
             try
             {
-                Usuario usuario = await UsuarioBusiness.ObtenerUsuarioByNombreAsync(nombreUsuario);
-                if (usuario == null) {
-                    return NotFound("El Usuario o password no son Correctos");
+                string resultado = await UsuarioBusiness.ObtenerUsuarioByNombreAsync(nombreUsuario,password);
+                if (resultado == "El Usuario o password no son Correctos")
+                {
+                    return NotFound(resultado);
                 }
-                else {
-                    if (usuario.Contraseña != password) {
-                        return NotFound("El Usuario o password no son Correctos");
-                    }
-                }
-                return Ok("Se Inicio sesion correctamente");
+
+                return Ok(resultado);
             }
             catch (Exception ex)
             {

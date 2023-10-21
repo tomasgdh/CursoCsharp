@@ -32,11 +32,16 @@ namespace SistemaGestionBusiness
             }
         }
 
-        public static async Task<Usuario> ObtenerUsuarioByNombreAsync(string nombreUsuario)
+        public static async Task<string> ObtenerUsuarioByNombreAsync(string nombreUsuario, string password)
         {
             try
             {
-                return await UsuarioData.ObtenerUsuarioByNombreAsync(nombreUsuario);
+                Usuario usuario = await UsuarioData.ObtenerUsuarioByNombreAsync(nombreUsuario);
+                if (usuario == null || usuario.Contraseña != password)
+                {
+                    return "El Usuario o password no son Correctos";
+                }
+                return "Se Inició sesión correctamente";
             }
             catch (Exception ex)
             {
