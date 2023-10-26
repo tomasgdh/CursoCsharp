@@ -9,7 +9,7 @@ namespace SistemaGestionWebAPI.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        [HttpPost(Name = "InicioSesion")]
+        [HttpPost("InicioSesion")]
         public async Task<IActionResult> Post(string nombreUsuario, string password)
         {
             try

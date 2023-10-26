@@ -9,7 +9,7 @@ namespace SistemaGestionWebAPI.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        [HttpGet(Name = "GetUsuarios")]
+        [HttpGet("GetUsuarios")]
         public async Task<IActionResult> Get()
         {
             try
@@ -41,7 +41,27 @@ namespace SistemaGestionWebAPI.Controllers
             }
         }
 
-        [HttpDelete(Name = "DeleteUsuario")]
+        [HttpGet("TraerNombre")]
+        public async Task<IActionResult> GetNombreUsuario(int id)
+        {
+            try
+            {
+                string resultado = await UsuarioBusiness.ObtenerNombreUsuarioAsync(id);
+                if (resultado == "El usuario no es correcto")
+                {
+                    return NotFound(resultado);
+                }
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+
+        [HttpDelete("DeleteUsuario")]
         public async Task<IActionResult> Delete([FromBody] int Id)
         {
             try
@@ -55,7 +75,7 @@ namespace SistemaGestionWebAPI.Controllers
             }
         }
 
-        [HttpPut(Name = "AltaUsuario")]
+        [HttpPut("AltaUsuario")]
         public async Task<IActionResult> Put([FromBody] Usuario usuario)
         {
             try
@@ -69,7 +89,7 @@ namespace SistemaGestionWebAPI.Controllers
             }
         }
 
-        [HttpPost(Name = "ModificarUsuario")]
+        [HttpPost("ModificarUsuario")]
         public async Task<IActionResult> Post([FromBody] Usuario usuario)
         {
             try

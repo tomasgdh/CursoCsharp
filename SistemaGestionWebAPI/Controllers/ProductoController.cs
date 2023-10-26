@@ -9,7 +9,7 @@ namespace SistemaGestionWebAPI.Controllers
     [ApiController]
     public class ProductoController : ControllerBase
     {
-        [HttpGet(Name = "GetProductos")]
+        [HttpGet("GetProductos")]
         public async Task<IActionResult> Get()
         {
             try
@@ -41,7 +41,7 @@ namespace SistemaGestionWebAPI.Controllers
             }
         }
 
-        [HttpDelete(Name = "DeleteProducto")]
+        [HttpDelete("DeleteProducto")]
         public async Task<IActionResult> Delete([FromBody] int Id)
         {
             try
@@ -55,7 +55,7 @@ namespace SistemaGestionWebAPI.Controllers
             }
         }
 
-        [HttpPut(Name = "AltaProducto")]
+        [HttpPut("AltaProducto")]
         public async Task<IActionResult> Put([FromBody] Producto producto)
         {
             try
@@ -69,7 +69,7 @@ namespace SistemaGestionWebAPI.Controllers
             }
         }
 
-        [HttpPost(Name = "ModificarProducto")]
+        [HttpPost("ModificarProducto")]
         public async Task<IActionResult> Post([FromBody] Producto producto)
         {
             try

@@ -32,6 +32,26 @@ namespace SistemaGestionBusiness
             }
         }
 
+        public static async Task<string> ObtenerNombreUsuarioAsync(int id)
+        {
+            try
+            {
+                Usuario usuario = await UsuarioData.ObtenerUsuarioAsync(id);
+                if (usuario == null)
+                {
+                    return "El usuario no es correcto";
+                }
+                else {
+                    return usuario.NombreUsuario;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static async Task<string> ObtenerUsuarioByNombreAsync(string nombreUsuario, string password)
         {
             try

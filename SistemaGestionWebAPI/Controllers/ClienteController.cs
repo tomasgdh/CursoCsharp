@@ -12,7 +12,7 @@ namespace SistemaGestionWebAPI.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
-        [HttpGet(Name = "GetClientes")]
+        [HttpGet("GetClientes")]
         public async Task<IActionResult> Get()
         {
             try
@@ -44,7 +44,7 @@ namespace SistemaGestionWebAPI.Controllers
             }
         }
 
-        [HttpDelete(Name = "DeleteCliente")]
+        [HttpDelete("DeleteCliente")]
         public async Task<IActionResult> Delete([FromBody] int Id)
         {
             try
@@ -58,7 +58,7 @@ namespace SistemaGestionWebAPI.Controllers
             }
         }
 
-        [HttpPut(Name = "AltaCliente")]
+        [HttpPut("AltaCliente")]
         public async Task<IActionResult> Put([FromBody] Cliente cliente)
         {
             try
@@ -72,7 +72,7 @@ namespace SistemaGestionWebAPI.Controllers
             }
         }
 
-        [HttpPost(Name = "ModificarCliente")]
+        [HttpPost("ModificarCliente")]
         public async Task<IActionResult> Post([FromBody] Cliente cliente)
         {
             try
